@@ -20,11 +20,13 @@ m8_diameter = 9;
 m8_nut_diameter = 14.1;
 
 m4_diameter = 4.5;
-m4_nut_diameter = 9;
+m4_nut_diameter = 8.3;
+m4_nut_thickness = 3.2;
 
 m3_diameter = 3.6;
-m3_nut_diameter = 5.3;
+m3_nut_diameter = 6.4;
 m3_nut_diameter_horizontal = 6.1;
+m3_nut_thickness = 2.5;
 
 // Bushing holder
 
