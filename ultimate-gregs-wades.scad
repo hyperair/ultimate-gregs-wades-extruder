@@ -25,6 +25,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 render_bracket = true; // select an extra mounting bracket or not
+render_supports = false;
 
 // Measure the Bowden pushfit connector you are using with a caliper.
 // In my case, so these are the defaults:
@@ -38,6 +39,8 @@ bowden_pushfit_thread = 6.0; // Bowden pushfit thread length
 
 include<configuration.scad>
 include<functions.scad>
+
+epsilon = 0.01;
 
 // Define the hotend_mounting style you want by specifying hotend_mount=style1+style2 etc.
 //e.g. wade(hotend_mount=groovemount+peek_reprapsource_mount);
@@ -325,6 +328,7 @@ module wade(
 			}
 
 			// The idler hinge support.
+			if (render_supports)
 			translate(idler_fulcrum)
 			{
 				rotate(-15)
@@ -412,7 +416,7 @@ echo("bhmh", mounting_holes)
 	}
 
 	// Idler fulcrum hole.
-	translate(idler_fulcrum+[0,0,0.4])
+	translate(idler_fulcrum - [0, 0, epsilon])
 	cylinder(r=m3_diameter/2,h=idler_short_side-2*idler_hinge_width-0.5,center=true,$fn=16);
 
 	translate(idler_fulcrum+[0,0,idler_short_side/2-idler_hinge_width-1])
@@ -446,7 +450,7 @@ echo("bhmh", mounting_holes)
 			translate([-m8_clearance_hole/2 -hole_for_608/2,0,9.5])
 			b608(h=wade_block_depth);
 		
-			translate([0,0,8+layer_thickness])
+			translate([0,0,8 + (render_supports ? layer_thickness : -epsilon)])
 			cylinder(r=m8_clearance_hole/2,h=wade_block_depth-(8+layer_thickness)+2);	
 
 			translate([0,0,20-2])
@@ -540,18 +544,18 @@ module motor_mount_holes()
 	slot_right=2;
 
 	{
-		translate([0,0,screw_head_recess_depth+layer_thickness])
+		translate([0,0,screw_head_recess_depth+(render_supports ? layer_thickness : -epsilon)])
 		for (hole=[0:3])
 		translate([motor_hole(hole)[0],motor_hole(hole)[1],0])
 		rotate([0,0,25])
 		{
 			translate([-slot_left,0,0])
-			cylinder(h=motor_mount_thickness-screw_head_recess_depth,r=radius,$fn=16);
+			cylinder(h=motor_mount_thickness + epsilon * 2-screw_head_recess_depth,r=radius,$fn=16);
 			translate([slot_right,0,0])
-			cylinder(h=motor_mount_thickness-screw_head_recess_depth,r=radius,$fn=16);
+			cylinder(h=motor_mount_thickness + epsilon * 2-screw_head_recess_depth,r=radius,$fn=16);
 
 			translate([-slot_left,-radius,0])
-			cube([slot_left+slot_right,radius*2,motor_mount_thickness-screw_head_recess_depth]);
+			cube([slot_left+slot_right,radius*2,motor_mount_thickness + epsilon * 2-screw_head_recess_depth]);
 		}
 
 		translate([0,0,-1])
