@@ -777,11 +777,11 @@ module basic_bracket() {
         translate([46.5,0,0]) cylinder(r=5, h=b_b_thickness);
       }
       // reinforcements
-      translate([48.2,28.5,4]) difference() {
+      translate([48.5,28.5,4]) difference() {
         translate([0,0,0]) cube([3,12,12]);
         translate([-0.1,0,0.5]) rotate([45,0,0]) cube([3.5,20,12]);
       }
-      translate([-4.7,28.5,4]) difference() {
+      translate([-5,28.5,4]) difference() {
         translate([0,0,0]) cube([3,12,12]);
         translate([-0.1,0,0.5]) rotate([45,0,0]) cube([3.5,20,12]);
       }
