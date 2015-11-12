@@ -33,6 +33,8 @@ render_supports = false;
 bowden_pushfit_d = 9.6;      // Bowden pushfit diameter
 bowden_pushfit_thread = 6.0; // Bowden pushfit thread length
 
+bowden_type = "nut";        // pushfit or nut
+
 // The Bowden connector will just be force-threaded into the base of the extruder.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -813,13 +815,43 @@ module basic_bracket() {
 // AndrewBCN : we only need to define the hole for the Bowden pushfit connector
 
 //bowden_holes ();
+module stretch(translation)
+{
+	children ();
+
+	translate (translation)
+	children ();
+}
 module bowden_holes ()
 {
-	bowden_d_tolerance = 0.2; // extra tolerance so that the Bowden pushfit connector threads in
-	extruder_recess_d=bowden_pushfit_d + bowden_d_tolerance; 
-	extruder_recess_h=bowden_pushfit_thread;
+	if (bowden_type == "pushfit") {
+		bowden_d_tolerance = 0.2; // extra tolerance so that the Bowden pushfit connector threads in
+		extruder_recess_d=bowden_pushfit_d + bowden_d_tolerance;
+		extruder_recess_h=bowden_pushfit_thread;
 
-	// Recess in base
-	translate([0,0,-1])
-	cylinder(r=extruder_recess_d/2,h=extruder_recess_h+1, $fn=32);	
+		// Recess in base
+		translate([0,0,-1])
+		cylinder(r=extruder_recess_d/2,h=extruder_recess_h+1, $fn=32);
+
+	} else if (bowden_type == "nut") {
+		// bowden tube
+		translate([0, 0, -1])
+		cylinder(r=2.4, h=10, $fn=32);
+
+		// m4 nut recess
+		translate ([0, 0, -epsilon])
+		cylinder (d=m4_nut_diameter, h=m4_nut_thickness - 0.5, $fn=6);
+
+		// screw holes for bowden capture plate
+		for (x = [1, -1] * 10)
+		translate ([x, 0, -epsilon]) {
+			cylinder(d=m3_diameter, h=15, $fn=20);
+
+			translate ([0, 0, 3])
+			hull ()
+			stretch ([0, -100, 0])
+			rotate ([0, 0, 90])
+			cylinder (d=m3_nut_diameter, h=m3_nut_thickness, $fn=6);
+		}
+	}
 }
