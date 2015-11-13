@@ -219,7 +219,7 @@ block_top_right=[wade_block_width,wade_block_height];
 
 layer_thickness=0.2; // AndrewBCN : 0.2mm recommended
 filament_feed_hole_d=(filament_diameter*1.1)/cos(180/8);
-hobbing_depth=2;
+hobbing_depth=0.4;
 echo ("filament_feed_hole_d", filament_feed_hole_d);
 
 //This is the distance from the centre of the filament to the centre of the hobbed bolt.
