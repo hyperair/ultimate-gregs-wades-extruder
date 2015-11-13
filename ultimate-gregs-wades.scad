@@ -418,7 +418,7 @@ module block_holes(mounting_holes=default_mounting_holes)
 	}
 
 	// Idler fulcrum hole.
-	translate(idler_fulcrum - [0, 0, epsilon])
+	translate(idler_fulcrum + [0, 0, render_supports ? 0.4 : -epsilon])
 	cylinder(r=m3_diameter/2,h=idler_short_side-2*idler_hinge_width-0.5,center=true,$fn=16);
 
 	translate(idler_fulcrum+[0,0,idler_short_side/2-idler_hinge_width-1])
