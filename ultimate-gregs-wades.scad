@@ -493,7 +493,7 @@ echo("bhmh", mounting_holes)
 					  -large_wheel_translation[1],
 					  wade_block_depth/2])
 				  rotate([-90,0,0])
-			  //fixme: (correct height
+			  //fixme: correct height
 				  //cylinder(r=m4_nut_diameter/2,h=base_thickness,$fn=6);	
 				  cylinder(r=m4_nut_diameter/2,h=29.3,$fn=6);
 			  }
