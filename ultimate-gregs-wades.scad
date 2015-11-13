@@ -449,7 +449,7 @@ module block_holes(mounting_holes=default_mounting_holes)
 			translate([0,0,20])
 			b608(h=9);
 		
-			translate([-(m8_clearance_hole/2 + hole_for_608/2 - hobbing_depth + filament_diameter),0,9.5])
+			translate([-(m8_clearance_hole/2 + hole_for_608/2),0,9.5])
 			b608(h=wade_block_depth);
 		
 			translate([0,0,8 + (render_supports ? layer_thickness : -epsilon)])
