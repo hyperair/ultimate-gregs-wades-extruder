@@ -405,7 +405,7 @@ function in_mask(mask,value)=(mask%(value*2))>(value-1);
 
 module block_holes(mounting_holes=default_mounting_holes)
 {
-echo("bhmh", mounting_holes)
+	echo("bhmh", mounting_holes);
 	//Round off the top of the block. 
 	translate([0,wade_block_height-block_bevel_r,-1])
 	render()
