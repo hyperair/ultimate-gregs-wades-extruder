@@ -228,7 +228,7 @@ filament_feed_hole_offset=8/2-hobbing_depth+filament_diameter/2;
 echo ("filament_feed_hole_offset", filament_feed_hole_offset);
 
 idler_nut_trap_depth=7.5;
-idler_nut_thickness=4;
+idler_nut_thickness=m3_nut_thickness;
 
 gear_separation_tolerance=0.25;
 gear_separation=7.4444+32.0111+gear_separation_tolerance;
@@ -511,13 +511,13 @@ module block_holes(mounting_holes=default_mounting_holes)
 		{
 			rotate([0,0,180/8])
 			translate([0,0,-1])
-			cylinder(r=m4_diameter/2,h=wade_block_depth+6,$fn=8);	
+			cylinder(r=m3_diameter/2,h=wade_block_depth+6,$fn=8);	
 			rotate([0,0,180/6])
 			translate([0,0,wade_block_width-idler_nut_trap_depth])
-			cylinder(r=m4_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
+			cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
 
 			translate([0,10/2,wade_block_width-idler_nut_trap_depth+idler_nut_thickness/2])
-			cube([m4_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
 		}
 	}
 }
