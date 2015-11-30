@@ -81,6 +81,10 @@ translate([52,70,0]) bearing_washer();
 // Guidler
 translate([-20,0,15.25]) rotate([0,-90,0]) wadeidler();
 
+if (bowden_type == "nut")
+translate ([-40, 0, 0])
+bowden_clamp ();
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Visualisation
 // (disabled)
@@ -852,6 +856,26 @@ module bowden_holes ()
 			stretch ([0, -100, 0])
 			rotate ([0, 0, 90])
 			cylinder (d=m3_nut_diameter, h=m3_nut_thickness, $fn=6);
+		}
+	}
+}
+
+module bowden_clamp ()
+{
+	difference () {
+		hull ()
+		for (x=[1, -1] * 10)
+		translate ([x, 0, 0])
+		cylinder (r=6, h=6, $fn=32);
+
+		translate ([0, 0, -epsilon]) {
+			hull ()
+			stretch ([0, 100, 0])
+			cylinder (r=2.4, h=20, $fn=32);
+
+			for (x=[1, -1] * 10)
+			translate ([x, 0, 0])
+			cylinder (r=m3_diameter/2, h=10, $fn=20);
 		}
 	}
 }
