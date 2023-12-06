@@ -40,7 +40,7 @@ gear_height = 10; //Height of the actual gears
 /* Gear "twist": how slanted the gears are.
  * A value of 1 means each tooth will slant up one additional tooth.
  */
-teeth_twist = 1;
+teeth_twist = 1.3;
 
 /* Chamfer gradient, tan(45) degrees works nicely.
  * Use -1 to disable chamferred edges.
@@ -82,7 +82,7 @@ gear1_setscrew_nut = 1;
  * Big gear configuration *
 \**************************/
 /* Number of teeth */
-gear2_teeth = 45;
+gear2_teeth = 35;
 /* Extra size of the outer rim */
 gear2_outer_thickness = 5;
 
