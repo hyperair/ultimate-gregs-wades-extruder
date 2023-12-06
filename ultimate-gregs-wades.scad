@@ -456,12 +456,29 @@ module block_holes(mounting_holes=default_mounting_holes)
 		
 			translate([-(m8_clearance_hole/2 + hole_for_608/2),0,9.5])
 			b608(h=wade_block_depth);
-		
-			translate([0,0,8 + (render_supports ? layer_thickness : -epsilon)])
-			cylinder(r=m8_clearance_hole/2,h=wade_block_depth-(8+layer_thickness)+2);	
+
+			render()
+			difference() {
+			  translate([0,0,8 + (render_supports ? layer_thickness : -epsilon)])
+				cylinder(r=m8_clearance_hole/2,h=wade_block_depth-(8+layer_thickness)+2);
+
+			  // constraint for flex filament
+			  *translate([
+				-filament_feed_hole_offset + filament_diameter/2,
+				-2,
+				wade_block_depth/2
+			  ])
+				resize([hobbing_depth * 2, filament_diameter, filament_diameter])
+				sphere(r=filament_diameter, $fn=10);
+
+			  translate([0, 0, wade_block_depth / 2])
+			  rotate_extrude()
+				translate([2 + m8_clearance_hole/2 - hobbing_depth, 0])
+				circle(r=2);   // m4 hobbing tap
+			}
 
 			translate([0,0,20-2])
-			cylinder(r=16/2,h=wade_block_depth-(8+layer_thickness)+2);	
+			cylinder(r=16/2,h=wade_block_depth-(8+layer_thickness)+2);
 
 			// Filament feed.
 			translate([-filament_feed_hole_offset,-10,wade_block_depth/2])
