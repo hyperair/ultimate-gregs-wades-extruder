@@ -1,6 +1,6 @@
 INKSCAPEDIR = /usr/share/inkscape/extensions/
 DXF_OUTLINES = $(INKSCAPEDIR)/dxf_outlines.py
-OPENSCAD = openscad
+OPENSCAD = openscad --enable manifold
 
 SCADFILES = ultimate-gregs-wades.scad WadeHerringboneGears.scad
 STLFILES = $(SCADFILES:.scad=.stl)
