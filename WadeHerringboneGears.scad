@@ -137,7 +137,7 @@ gear2_middle_rounding = 3;
  * mind tolerance
  * (a tolerance of 0.35mm worked fine in my case)
  */
-gear2_nut_diameter = 14 + 0.35;
+gear2_nut_diameter = 13 + 0.35;
 
 /* Depth that the nut should be sunk inside the holder */
 gear2_nut_sunk = 6.5;
