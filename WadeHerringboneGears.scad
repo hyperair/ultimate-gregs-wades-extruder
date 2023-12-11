@@ -61,7 +61,7 @@ gear1_base_height = 8;
  * Be sure to add some tolerance for printer error
  * AndrewBCN : in my case, 0.4mm was too much, 0.35mm seems OK
  */
-gear1_shaft_diameter = 5 + 0.35;
+gear1_shaft_diameter = 5 + 0.6;
 /* Set-screw diameter, mind tolerance */
 gear1_setscrew_diameter = 3 + 0.4;
 /* Set-nut width, measured across the flat sides,
