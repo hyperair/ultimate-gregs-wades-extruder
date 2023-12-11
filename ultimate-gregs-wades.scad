@@ -215,7 +215,7 @@ motor_mount_thickness=8;
 
 large_wheel_translation=[50.5-(7.4444+32.0111+0.25),34+elevation,0];
 
-m8_clearance_hole=8;
+m8_clearance_hole=8 + 0.6;
 
 hole_for_608=22.15; // AndrewBCN : was 22.3mm, decreased to 22.15mm
 608_diameter=22;
